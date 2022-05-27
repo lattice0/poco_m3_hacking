@@ -4,3 +4,9 @@
 [submodule "firecracker"]
 	path = firecracker
 	url = https://github.com/firecracker-microvm/firecracker
+[submodule "firecracker_integration/vmm-sys-util"]
+	path = firecracker_integration/vmm-sys-util
+	url = https://github.com/rust-vmm/vmm-sys-util
+[submodule "firecracker_integration/event-manager"]
+	path = firecracker_integration/event-manager
+	url = https://github.com/rust-vmm/event-manager
