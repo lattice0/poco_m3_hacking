@@ -1,5 +1,5 @@
 {
-	"name": "AOSP development/hacking container",
+	"name": "Poco M3 KVM container",
 
 	// Sets the run context to one level up instead of the .devcontainer folder.
 	"context": ".",
@@ -13,7 +13,6 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": ["ms-vscode.cpptools"],
 	"workspaceMount": "source=${localWorkspaceFolder},target=/home/project,type=bind,consistency=cached", 
-	"workspaceFolder": "/home/project",
 	"runArgs": ["--privileged"],
 	"mounts": ["source=/dev/bus/usb,target=/dev/bus/usb,type=bind,consistency=cached",
 			   "source=${localEnv:HOME}/.android_aos_docker,target=/root/.android,type=bind,consistency=cached"],
@@ -31,5 +30,7 @@
 
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"
-    "remoteUser": "dev"
+	"workspaceFolder": "/home/dev/project",
+    "remoteUser": "dev",
+	"postCreateCommand": "git submodule update --init --recursive"
 }

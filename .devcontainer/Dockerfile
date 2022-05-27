@@ -24,24 +24,23 @@ RUN sudo apt-get update && \
         nano libssl-dev bc python2 cpio device-tree-compiler openjdk-8-jdk \
         python-is-python3 abootimg brotli usbutils python3-setuptools libarchive-tools \
         qemu-kvm ninja-build python3-pip ccache language-pack-ru && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ENV PATH="${PATH}:/opt/platform_tools/platform-tools/"
 # Some precompiled tools like adb
-RUN sudo mkdir /opt/platform_tools && \
+RUN sudo mkdir -p /opt/platform_tools && \
     TEMPD=$(mktemp -d) && \
     wget -O $TEMPD/platform_tools.zip https://dl.google.com/android/repository/platform-tools-latest-linux.zip -q --show-progress --progress=bar:force 2>&1 && \
-    sudo mv $TEMPD opt/platform_tools && \
-    cd  /opt/platform_tools/ && unzip platform_tools.zip && rm platform_tools.zip
+    cd $TEMPD && unzip platform_tools.zip && rm platform_tools.zip && \
+    sudo cp -r $TEMPD/* /opt/platform_tools
 
 ENV PATH="/opt/repo/bin:${PATH}" 
-ENV PATH="${PATH}:/opt/platform_tools/platform-tools/"
-
 # Repo, for cloning AOSP
-RUN sudo mkdir -p /opt/repo/bin && \
+RUN set -x && sudo mkdir -p /opt/repo/bin && \
     TEMPD=$(mktemp -d) && \
-    curl https://storage.googleapis.com/git-repo-downloads/repo > $TEMPD && \
-    sudo mv $TEMPD /opt/repo/bin/repo && \
-    && chmod a+rx /opt/repo/bin/repo
+    wget -O $TEMPD/repo https://storage.googleapis.com/git-repo-downloads/repo && \
+    sudo cp -r $TEMPD/repo /opt/repo/bin/repo && \
+    sudo chmod a+rx /opt/repo/bin/repo
 
 # Helper for extracing some .dat files
 ENV PATH="${PATH}:/opt/sdat2img/sdat2img"
@@ -50,7 +49,7 @@ RUN COMMIT=b432c988a412c06ff24d196132e354712fc18929 && \
     TEMPD=$(mktemp -d) && \
     cd $TEMPD && git clone https://github.com/xpirt/sdat2img && \
     cd sdat2img && git checkout $COMMIT && \
-    sudo mv $TEMPD /opt/sdat2img
+    sudo cp -r $TEMPD/sdat2img /opt/sdat2img
 
 # .img unpack/repack tool for Android
 RUN COMMIT=d4a2677828fe9b60117af8996dcf1dea85d6b431 && \
@@ -59,7 +58,7 @@ RUN COMMIT=d4a2677828fe9b60117af8996dcf1dea85d6b431 && \
     cd $TEMPD && git clone https://github.com/osm0sis/mkbootimg && \ 
     cd mkbootimg && git checkout $COMMIT && \
     make && sudo make install && \
-    sudo mv $TEMPD /opt/mkbootimg
+    sudo cp -r $TEMPD/mkbootimg /opt/mkbootimg
 
 # Official .img unpack/repack tool for Android
 ENV PATH="${PATH}:/opt/google_mkbootimg/mkbootimg"
@@ -70,7 +69,7 @@ RUN ANDROID_BRANCH=android-11.0.0_r48 && \
     cd $TEMPD && \
     git clone https://android.googlesource.com/platform/system/tools/mkbootimg -b $ANDROID_BRANCH && \ 
     cd mkbootimg && git checkout $COMMIT && \
-    sudo mv $TEMPD /opt/google_mkbootimg
+    sudo cp -r $TEMPD/mkbootimg /opt/google_mkbootimg
 
 # Official misc prebuilts
 ENV PATH="${PATH}:/opt/google_misc/misc"
@@ -80,7 +79,9 @@ RUN ANDROID_BRANCH=android-10.0.0_r47 && \
     TEMPD=$(mktemp -d) && \   
     cd $TEMPD && git clone https://android.googlesource.com/platform/prebuilts/misc -b $ANDROID_BRANCH && \ 
     cd misc && git checkout $COMMIT && \
-    sudo mv $TEMPD /opt/google_misc
+    sudo cp -r $TEMPD/misc /opt/google_misc
+
+WORKDIR /tmp
 
 RUN cd /tmp && git clone https://github.com/ReFirmLabs/binwalk && \
     cd binwalk && sudo python3 setup.py install
@@ -92,9 +93,12 @@ RUN sudo apt-get update && sudo apt-get install -y python3-dev && \
 RUN cd /tmp && git clone https://github.com/PabloCastellano/extract-dtb && \
     cd extract-dtb && sudo python3 setup.py install
 
-RUN mkdir /opt/entrypoint && cd /opt/entrypoint && echo "#!/bin/sh\n\
+RUN sudo mkdir /opt/entrypoint && \ 
+    TEMPD=$(mktemp -d) && \   
+    echo "#!/bin/sh\n\
 source /home/project/source_me.sh\n\
-exec \"\$@\"" > entrypoint.sh
+exec \"\$@\"" > $TEMPD/entrypoint.sh && \
+    sudo cp $TEMPD/entrypoint.sh /opt/entrypoint
 
 RUN cat /opt/entrypoint/entrypoint.sh 
 
@@ -104,9 +108,11 @@ RUN git config --global color.ui true
 #    git config --global user.email "lattice0@protonmail.com" && \
 #    git config --global color.ui true
 
-RUN /bin/bash -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+RUN /bin/bash -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
 
-WORKDIR /home/project
+RUN sudo usermod -aG plugdev dev
+
+WORKDIR /home/dev/project
 
 #RUN useradd -ms /bin/bash  user
 #USER user
