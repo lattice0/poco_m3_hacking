@@ -1,3 +1,6 @@
 [submodule "android_hacking_container"]
 	path = android_hacking_container
 	url = https://github.com/lattice0/android_hacking_container
+[submodule "firecracker"]
+	path = firecracker
+	url = https://github.com/firecracker-microvm/firecracker
