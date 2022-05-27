@@ -142,6 +142,7 @@ RUN git config --global color.ui true
 ENV PATH="/home/dev/.cargo/bin/:${PATH}"
 RUN /bin/bash -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
 RUN rustup target add aarch64-linux-android
+RUN cargo install cargo-ndk
 
 RUN sudo apt install -y clang
 
