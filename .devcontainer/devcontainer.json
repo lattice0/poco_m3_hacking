@@ -11,7 +11,7 @@
 	"settings": {},
 	
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": ["ms-vscode.cpptools"],
+	"extensions": ["ms-vscode.cpptools", "rust-lang.rust-analyzer"],
 	"workspaceMount": "source=${localWorkspaceFolder},target=/home/project,type=bind,consistency=cached", 
 	"runArgs": ["--privileged"],
 	"mounts": ["source=/dev/bus/usb,target=/dev/bus/usb,type=bind,consistency=cached",
