@@ -30,7 +30,6 @@
 
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"
-	"workspaceFolder": "/home/dev/project",
-    "remoteUser": "dev",
-	"postCreateCommand": "git submodule update --init --recursive"
+	"workspaceFolder": "/home/project",
+    "remoteUser": "dev"
 }
