@@ -144,7 +144,9 @@ RUN /bin/bash -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 RUN rustup target add aarch64-linux-android
 RUN cargo install cargo-ndk
 
-RUN sudo apt install -y clang
+RUN sudo apt install -y llvm clang clang-tools binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu
+
+
 
 RUN sudo usermod -aG plugdev dev
 
