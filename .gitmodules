@@ -10,3 +10,6 @@
 [submodule "firecracker_integration/event-manager"]
 	path = firecracker_integration/event-manager
 	url = https://github.com/rust-vmm/event-manager
+[submodule "firecracker_integration/libc"]
+	path = firecracker_integration/libc
+	url = https://github.com/rust-lang/libc
