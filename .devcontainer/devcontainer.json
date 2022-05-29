@@ -12,7 +12,7 @@
 	],
 	"mounts": [
 		"source=/dev/bus/usb,target=/dev/bus/usb,type=bind,consistency=cached",
-		"source=${localEnv:HOME}/.android_aos_docker,target=/root/.android,type=bind,consistency=cached",
+		"source=${localWorkspaceFolder}/.mount/.android,target=/home/dev/.android,type=bind,consistency=cached",
 		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
 	],
 	"workspaceMount": "source=${localWorkspaceFolder},target=/home/dev/project,type=bind,consistency=cached",
