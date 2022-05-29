@@ -146,6 +146,8 @@ RUN cargo install cargo-ndk
 
 #RUN sudo apt install -y llvm clang clang-tools gcc-aarch64-linux-gnu
 
+RUN sudo locale-gen en_US en_US.UTF-8
+
 RUN sudo usermod -aG plugdev dev
 
 WORKDIR /home/dev/project
