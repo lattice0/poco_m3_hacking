@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "algorithm": "cpp"
-    }
+    },
+    "terminal.integrated.scrollback": 100000000,
 }
