@@ -1,1 +1,1 @@
-androidboot.selinux=permissive
+androidboot.selinux=permissive androidboot.init_fatal_reboot_target=recovery
