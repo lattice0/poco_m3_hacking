@@ -1,0 +1,1 @@
+cd kex && autoreconf && LDFLAGS=-static ./configure --prefix=/usr/local && make 

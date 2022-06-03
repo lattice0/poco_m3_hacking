@@ -1,1 +1,0 @@
-cd kex && make ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu-
