@@ -1,1 +1,1 @@
-cd kex && autoreconf && LDFLAGS=-static ./configure --prefix=/usr/local && make 
+cd kex && autoreconf && LDFLAGS=-static ./configure --host=aarch64-linux-android --prefix=${ANDROID_NDK_HOME}/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/ && make 
