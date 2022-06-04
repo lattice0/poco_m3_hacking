@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-set -xe
+set -xeo pipefail
 cd k
 PATH="${PATH}:$SCRIPT_DIR/../tools/clang/bin:$SCRIPT_DIR/../tools/gcc/toolchain/bin"
 export ARCH=arm64 && export SUBARCH=arm64
@@ -20,6 +20,3 @@ EXTRA_KVM_FLAGS=""
 #make SHELL='sh -x' ..
 make O=out ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- vendor/citrus-perf_defconfig
 make O=out ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- -j$(nproc --all) 2>&1 | tee kernel.log
-#make -C=k/lib/modules ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- -j$(nproc --all) M=out_modules modules
-#make ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- SUBLEVEL=0 EXTRAVERSION=-14-amd64 modules_prepare
-#make ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- -j$(nproc --all)  M=arch/arm64/kvm
