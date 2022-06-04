@@ -3,6 +3,7 @@ kernel/*
 !kernel/kernel_build.sh
 !kernel/kernel_download.sh
 !kernel/kernel_extract.sh
+!kernel/upload_kexec_kernel.sh
 !kernel/extra_boot_args.txt
 rom/*
 !rom/rom_download.sh
