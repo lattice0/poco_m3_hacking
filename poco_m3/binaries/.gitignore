@@ -1,2 +1,3 @@
-!kexec/build_kexec.sh
-!kexec/download_kexec.sh
+!kexec/*.sh
+!strace/*.sh
+!*.sh

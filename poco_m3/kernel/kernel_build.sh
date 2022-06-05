@@ -9,7 +9,7 @@ export CROSS_COMPILE=aarch64-linux-android-
 #TODO: why this?
 export DTC_EXT="/opt/google_misc/misc/linux-x86/dtc/dtc"
 clang -v
-#rm -rf out
+rm -rf out
 mkdir -p out
 rm -rf out_modules
 mkdir -p out_modules
