@@ -1,3 +1,4 @@
 set -ex
-adb push ./kexec/kex/build/sbin/kexec /data/local/tmp
-adb shell "chmod +x /data/local/tmp/kexec"
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+(cd ${SCRIPT_DIR}/kexec && /bin/bash ./upload.sh)
+(cd ${SCRIPT_DIR}/strace && /bin/bash ./upload.sh)

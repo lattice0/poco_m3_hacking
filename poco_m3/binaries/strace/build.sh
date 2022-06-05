@@ -1,4 +1,5 @@
 set -ex
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 export TOOLCHAIN=${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64
 export TARGET=aarch64-linux-android
 #minSdkVersion.
@@ -10,7 +11,6 @@ export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
 export LD=$TOOLCHAIN/bin/ld
 export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
 export STRIP=$TOOLCHAIN/bin/llvm-strip
-(cd str && ./bootstrap && LDFLAGS=-static ./configure --disable-mpers --host $TARGET && make)
+(cd str && ./bootstrap && LDFLAGS=-static ./configure --disable-mpers --host $TARGET && make CFLAGS="-Wno-unused-function")
 # needed because of https://github.com/termux/termux-packages/issues/8273
-#./align_fix.py kex/build/sbin/kexec
-#--sysroot=${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/ 
+../align_fix.py ${SCRIPT_DIR}/str/src/strace
