@@ -9,7 +9,7 @@ export CROSS_COMPILE=aarch64-linux-android-
 #TODO: why this?
 export DTC_EXT="/opt/google_misc/misc/linux-x86/dtc/dtc"
 clang -v
-rm -rf out
+#rm -rf out
 mkdir -p out
 rm -rf out_modules
 mkdir -p out_modules
@@ -20,3 +20,4 @@ EXTRA_KVM_FLAGS=""
 #make SHELL='sh -x' ..
 make O=out ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- vendor/citrus-perf_defconfig
 make O=out ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- -j$(nproc --all) 2>&1 | tee kernel.log
+#make O=out ARCH=arm64 CC=clang CLANG_TRIPLE=aarch64-linux-gnu- -j$(nproc --all) Image.gz 2>&1 | tee kernel_gz.log
