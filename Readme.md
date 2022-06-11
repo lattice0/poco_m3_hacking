@@ -1,18 +1,25 @@
 # Poco M3 hacking container
 
-Do
+## Pure docker
 
 ```bash
-DEVICE=../../poco_m3
+docker build -t project - < Dockerfile
+docker run -u "$(id -u):$(id -g)" -it -v /dev/bus/usb:/dev/bus/usb -v $PWD/.mount/.android:/home/dev/.android -v $PWD:/home/dev/project -e DEVICE="../../poco_m3" project /bin/bash
 ```
 
-Then 
+then do `source android_hacking_container/source_me.sh`
+
+## Devcontainer
+
+Open this in VSCode's .devcontainer, then 
 
 ```bash
 source android_hacking_container/source_me.sh
 ```
 
-Also for udev rules:
+## Usb
+
+If you have problems with udev rules, do outside the container
 
 ```bash
 sudo nano /etc/udev/rules.d/51-android.rules
