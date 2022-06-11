@@ -1,5 +1,5 @@
 {
-	"name": "Poco M3 KVM container",
+	"name": "Poco M3 Hacking container",
 	"context": ".",
 	"dockerFile": "./Dockerfile",
 	"settings": {},

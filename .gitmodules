@@ -1,15 +1,3 @@
 [submodule "android_hacking_container"]
 	path = android_hacking_container
 	url = https://github.com/lattice0/android_hacking_container
-[submodule "firecracker"]
-	path = firecracker
-	url = https://github.com/firecracker-microvm/firecracker
-[submodule "firecracker_integration/vmm-sys-util"]
-	path = firecracker_integration/vmm-sys-util
-	url = https://github.com/rust-vmm/vmm-sys-util
-[submodule "firecracker_integration/event-manager"]
-	path = firecracker_integration/event-manager
-	url = https://github.com/rust-vmm/event-manager
-[submodule "firecracker_integration/libc"]
-	path = firecracker_integration/libc
-	url = https://github.com/rust-lang/libc
