@@ -8,3 +8,4 @@ rom/*
 aosp/*
 !aosp/clone_aosp.sh
 tools/*
+dmesg.txt
