@@ -1,5 +1,7 @@
 # Poco M3 hacking container
 
+A container for hacking the Poco M3 Android phone, based on (Android Hacking Container)[https://github.com/lattice0/android_hacking_container].
+
 ## Pure docker
 
 ```bash
