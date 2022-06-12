@@ -1,7 +1,7 @@
 {
 	"name": "Poco M3 Hacking container",
 	"context": ".",
-	"dockerFile": "../Dockerfile",
+	"dockerFile": "../poco_m3/Dockerfile",
 	"settings": {},
 	"extensions": [
 		"ms-vscode.cpptools",

@@ -1,1 +1,1 @@
-androidboot.selinux=permissive androidboot.init_fatal_reboot_target=recovery ramoops.mem_address=0x8000000 ramoops.ecc=1
+androidboot.selinux=permissive androidboot.init_fatal_reboot_target=recovery ramoops.ecc=1 ramoops.ftrace_size=1048576
