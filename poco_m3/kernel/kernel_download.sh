@@ -9,5 +9,5 @@ rm -rf k
 #git clone https://github.com/c3eru/kernela10 k
 #git clone https://github.com/c3eru/a10tes k
 #git clone https://github.com/lattice0/MSM-4.19-MiBengal k
-git clone https://github.com/stormbreaker-project/kernel_poco_citrus/ k
+git clone https://github.com/lattice0/kernel_poco_citrus -b debug k
 
