@@ -8,12 +8,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
       - name: docker build
         run: |
             docker build -t project poco_m3
       - name: download tools
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && ls && source android_hacking_container/source_me.sh && dt"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && dt"
       - name: kernel download + build
         run: |
             docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && kd && kb "
