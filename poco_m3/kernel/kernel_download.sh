@@ -10,4 +10,4 @@ rm -rf k
 #git clone https://github.com/c3eru/a10tes k
 #git clone https://github.com/lattice0/MSM-4.19-MiBengal k
 git clone https://github.com/lattice0/kernel_poco_citrus -b debug k
-
+#git clone https://android.googlesource.com/kernel/msm k && cd k && git checkout android-11.0.0_r0.116
