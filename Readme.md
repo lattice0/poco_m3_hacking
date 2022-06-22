@@ -2,7 +2,13 @@
 
 A container for hacking the Poco M3 Android phone, based on [Android Hacking Container](https://github.com/lattice0/android_hacking_container).
 
-## Pure docker
+## Customizing for your phone
+
+Change `.devcontainer/devcontainer.json` to set `"containerEnv": { "DEVICE": "../../your_phone" }`, and also change `poco_m3` by your phone name. Edit the `.sh` files inside to download the kernel for your phone, as well as the ROM, tools, etc. 
+
+## Running
+
+### Pure docker
 
 ```bash
 docker build -t project - < Dockerfile
@@ -11,7 +17,7 @@ docker run -u "$(id -u):$(id -g)" -it -v /dev/bus/usb:/dev/bus/usb -v $PWD/.moun
 
 then do `source android_hacking_container/source_me.sh`
 
-## Devcontainer
+### VSCode's Devcontainer
 
 Open this in VSCode's .devcontainer, then 
 
@@ -19,7 +25,7 @@ Open this in VSCode's .devcontainer, then
 source android_hacking_container/source_me.sh
 ```
 
-## Usb
+## Usb problems
 
 If you have problems with udev rules, do outside the container
 
@@ -27,7 +33,7 @@ If you have problems with udev rules, do outside the container
 sudo nano /etc/udev/rules.d/51-android.rules
 ```
 
-Then paste
+Then paste, but with your vendor and product numbers (check with `lsusb`)
 
 ```bash
 SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="d00d", MODE="0666",>
