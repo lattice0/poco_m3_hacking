@@ -4,7 +4,7 @@ A container for hacking the Poco M3 Android phone, based on [Android Hacking Con
 
 ## Customizing for your phone
 
-Change `.devcontainer/devcontainer.json` to set `"containerEnv": { "DEVICE": "../../your_phone" }`, and also change `poco_m3` by your phone name. Edit the `.sh` files inside to download the kernel for your phone, as well as the ROM, tools, etc. 
+Edit the `.sh` files inside to download the kernel for your phone, as well as the ROM, tools, etc. 
 
 ## Running
 
@@ -12,7 +12,7 @@ Change `.devcontainer/devcontainer.json` to set `"containerEnv": { "DEVICE": "..
 
 ```bash
 docker build -t project - < Dockerfile
-docker run -u "$(id -u):$(id -g)" -it -v /dev/bus/usb:/dev/bus/usb -v $PWD/.mount/.android:/home/dev/.android -v $PWD:/home/dev/project -e DEVICE="../../poco_m3" project /bin/bash
+docker run -u "$(id -u):$(id -g)" -it -v /dev/bus/usb:/dev/bus/usb -v $PWD/.mount/.android:/home/dev/.android -v $PWD:/home/dev/project -e DEVICE="../../device" project /bin/bash
 ```
 
 then do `source android_hacking_container/source_me.sh`

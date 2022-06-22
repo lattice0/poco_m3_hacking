@@ -18,5 +18,5 @@
 	"workspaceMount": "source=${localWorkspaceFolder},target=/home/dev/project,type=bind,consistency=cached",
 	"workspaceFolder": "/home/dev/project",
 	"remoteUser": "dev",
-	"containerEnv": { "DEVICE": "../../poco_m3" }
+	"containerEnv": { "DEVICE": "../../device" }
 }
