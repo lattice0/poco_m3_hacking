@@ -1,10 +1,10 @@
 name: Test
 on: [push]
 jobs:
-  Poco_M3:
+  device:
     runs-on: ubuntu-latest
     env: 
-      DEVICE: poco_m3
+      DEVICE: device
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -12,40 +12,40 @@ jobs:
           submodules: 'recursive'
       - name: docker build
         run: |
-            docker build -t project poco_m3
+            docker build -t project device
       - name: download tools
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && dt"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && dt"
       - name: kernel download + build
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && kd && kb "
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && kd && kb "
       - name: rom download + extract
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && rd && re"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && rd && re"
       - name: boot.img extract and repack
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && be && br"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && be && br"
       - name: kernel download + build + rom download + boot.img extract + boot.img repack 
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && kd && kb && rd && be && br"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && kd && kb && rd && be && br"
       - name: discover_clang_version
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && discover_clang_version"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && discover_clang_version"
       - name: ram disk unpack and repack
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && rau && rar"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && rau && rar"
       - name: install magisk
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && im"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && im"
       - name: patch magisk
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && pm"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && pm"
       - name: p & d shortcuts
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && p && d"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && p && d"
       - name: download_binaries
         run: |
-            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && download_binaries"
+            docker run -u "$(id -u):$(id -g)" -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && download_binaries"
       - name: build_binaries
         run: |
-            docker run -u root -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=poco_m3 && source android_hacking_container/source_me.sh && build_binaries"
+            docker run -u root -v $PWD:/home/dev/project project /bin/bash -c "DEVICE=device && source android_hacking_container/source_me.sh && build_binaries"
