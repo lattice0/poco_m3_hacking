@@ -21,7 +21,7 @@ RUN sudo apt-get update && \
         zip curl wget zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 liburcu-dev \
         lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev \
         libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig libncurses5 rsync \
-        nano libssl-dev bc python2 cpio device-tree-compiler openjdk-8-jdk \
+        nano libssl-dev bc python2 cpio device-tree-compiler openjdk-8-jdk cmake \
         python-is-python3 abootimg brotli usbutils python3-setuptools libarchive-tools \
         qemu-kvm ninja-build python3-pip ccache language-pack-ru dos2unix unzip ed autoconf && \
     sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -127,6 +127,11 @@ RUN set -ex && sudo mkdir ${ANDROID_HOME} && curl -sSL -o android-sdk.zip ${ANDR
     && yes | ${SDKMANAGER} --sdk_root=${ANDROID_HOME} --update \
     && sudo chown $USERNAME:$USERNAME $ANDROID_HOME -R
 # ------------------------------------
+
+RUN sudo apt-get update && sudo apt install -y libusb-1.0-0-dev libusb-dev \
+    && git clone https://github.com/Benjamin-Dobell/Heimdall/ && cd Heimdall \
+    && cmake -D DISABLE_FRONTEND=true . \
+    && make && sudo make install
 
 RUN sudo mkdir /opt/entrypoint && \ 
     TEMPD=$(mktemp -d) && \   
