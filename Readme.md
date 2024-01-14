@@ -47,6 +47,6 @@ sudo udevadm control --reload-rules
 
 ## USB restarts when mounting into VM
 
-For that, mount into a VM, install adb via ˋsudo apt install -y adbˋ, do the adb shell and accept the key on the phone. Now ˋadb kill-serverˋ and when you remount docker again, it will mount ˋ˜/.androidˋ which contains the key that works!
+For that, mount into a VM, install adb via `sudo apt install -y adb`, do the adb shell and accept the key on the phone. Now `adb kill-server` and when you remount docker again, it will mount `˜/.android` which contains the key that works!
 
-PS: I needed ˋ--privilegedˋ, but I should try without it
+PS: I needed `--privileged`, but I should try without it
