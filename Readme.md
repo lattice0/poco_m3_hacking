@@ -36,7 +36,7 @@ sudo nano /etc/udev/rules.d/51-android.rules
 Then paste, but with your vendor and product numbers (check with `lsusb`)
 
 ```bash
-SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="d00d", MODE="0666",>
+SUBSYSTEM=="usb", ATTR{idVendor}=="22b8", ATTR{idProduct}=="2e81", MODE="0666", GROUP="plugdev"
 ```
 
 Then
